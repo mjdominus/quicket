@@ -1,0 +1,32 @@
+#!/bin/env python3
+
+import sys
+sys.path.append('/home/mjd/src/quicket/lib') # XXX
+
+from Quicket import Quicket
+from argparse import ArgumentParser
+from pathlib import Path
+
+def argparser():
+    p = ArgumentParser()
+    p.add_argument('--id', '-I')
+    p.add_argument('title')
+    p.add_argument('file', type=Path)
+    return p
+
+def fixup_args(args):
+    if not args.file.name.endswith(".md"):
+        args.file = args.file.with_name(args.file.name + ".md")
+
+if __name__ == '__main__':
+    app = Quicket()
+    args = argparser().parse_args()
+
+    fixup_args(args)
+
+    with open(app.template_file) as fh_in:
+        with open(Path(app.ticket_dir) / args.file, "w") as fh_out:
+            print("ID: 142857", file=fh_out)
+            print(f"Title: {args.title}", file=fh_out)
+            for line in fh_in.readlines():
+                print(line, file=fh_out, end="")
