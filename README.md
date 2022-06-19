@@ -90,4 +90,6 @@ If you need them, but for example `change-status` is totally superfluous.
 
 Maybe some kind of trivial reporting.  But the way to go on this is a
 utility that turns the metainformation into a SQLite file that you can
-query.
+query.  Look into
+[`sqlite-utils`](https://sqlite-utils.datasette.io/en/stable/).
+(Thanks, Julia!)
