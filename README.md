@@ -25,6 +25,7 @@ because Jira is slow and clumsy.
 The file has a metainformation block at the top that includes
 
   * title
+  * ID
   * creation time
   * last activity time
   * current status
@@ -33,6 +34,15 @@ The file has a metainformation block at the top that includes
 
 Anything else?  Maybe not.
 Freeform stuff should be allowed probably
+
+## IDs
+
+Can be arbitrarily assigned strings or sequence numbers or something.
+
+If you get to the point of displaying the Markdown as HTML, you can
+hack the Markdown processor to specially handle link URIs of the form
+`quicket:IDNUMBER`.
+
 
 ## Statuses include:
 
@@ -43,11 +53,16 @@ Freeform stuff should be allowed probably
   * Done
   * Will not do
 
+## Hierarchy
+
+Tickets have subtickets. If a ticket is in `file.md`, its subtickets
+are in the directory `file.sub`.  Simple.
+
 # Utility programs
 
 ## `new-ticket`
 
-Write a new file template
+Write a new file template.  Includes allocating an ID.
 
 ## `to-do`
 
@@ -59,6 +74,16 @@ List tickets that are ready to start, are in progress, or are
 After making changes to a bunch of tickets, go through and update the
 “last activity time” in the changed files.
 
+## `find`
+
+Given an ID, what file contains that ticket?  (Filenames should be
+descriptive.)
+
+## `show`
+
+Given an ID (or maybe title match) display a tree of the title and the
+subticket titles.
+
 ## Others
 
 If you need them, but for example `change-status` is totally superfluous.
@@ -66,5 +91,3 @@ If you need them, but for example `change-status` is totally superfluous.
 Maybe some kind of trivial reporting.  But the way to go on this is a
 utility that turns the metainformation into a SQLite file that you can
 query.
-
-
