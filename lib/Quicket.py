@@ -1,8 +1,10 @@
 
+import fcntl
 from os import environ as env
 from pathlib import Path
 import pwd
 import toml
+
 
 class Quicket():
     def __init__(self, config_dir=None):
@@ -16,7 +18,7 @@ class Quicket():
         if "QUICKET_HOME" in env:
             return Path(env["QUICKET_HOME"])
         else:
-            return self.homedir() / ".quicket"
+            return self.homedir / ".quicket"
 
     def default_config_file(self):
         if "QUICKET_CONF" in env:
@@ -24,6 +26,7 @@ class Quicket():
         else:
             return self.default_config_dir() / "config"
 
+    @property
     def homedir(self):
         if "HOME" in env:
             return Path(env["HOME"])
