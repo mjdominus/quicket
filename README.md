@@ -7,7 +7,7 @@ Very simple ticketing system
 The file is written in Markdown.
 
 Don't worry about GUI, about attachements, blah blah blah.
-Files can be attached from GDrive and linked from the file.
+Files can be stored in GDrive and linked from the ticket markdown.
 
 Files can be organized hierarcically.  The tool will just search all
 the directories.  Maybe in the future you can have an `archived`
