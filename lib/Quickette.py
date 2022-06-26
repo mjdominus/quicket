@@ -6,7 +6,7 @@ import pwd
 import toml
 
 
-class Quicket():
+class Quickette():
     def __init__(self, config_dir=None):
         if config_dir is None:
             config_dir = self.default_config_dir()
@@ -18,7 +18,7 @@ class Quicket():
         if "QUICKET_HOME" in env:
             return Path(env["QUICKET_HOME"])
         else:
-            return self.homedir / ".quicket"
+            return self.homedir / ".quickette"
 
     def default_config_file(self):
         if "QUICKET_CONF" in env:
@@ -45,7 +45,7 @@ class Quicket():
             self.conf["id-format"] = "{:03d}"
 
         if "ticket-dir" not in self.conf:
-            self.conf["ticket-dir"] = self.homedir / "quicket"
+            self.conf["ticket-dir"] = self.homedir / "quickette"
 
     def allocate_ticket_id(self):
         with open(self.id_file_sem, "w") as sem:
@@ -75,7 +75,7 @@ class Quicket():
 
     @property
     def ticket_dir(self):
-        return "/home/mjd/quicket" # XXX
+        return "/home/mjd/quickette" # XXX
 
     @property
     def template_file(self):

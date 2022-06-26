@@ -1,9 +1,9 @@
 #!/bin/env python3
 
 import sys
-sys.path.append('/home/mjd/src/quicket/lib') # XXX
+sys.path.append('/home/mjd/src/quickette/lib') # XXX
 
-from Quicket import Quicket
+from Quickette import Quickette
 from argparse import ArgumentParser
 from pathlib import Path
 
@@ -19,7 +19,7 @@ def fixup_args(args):
         args.file = args.file.with_name(args.file.name + ".md")
 
 if __name__ == '__main__':
-    app = Quicket()
+    app = Quickette()
     args = argparser().parse_args()
 
     fixup_args(args)

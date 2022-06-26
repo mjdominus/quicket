@@ -41,7 +41,7 @@ Can be arbitrarily assigned strings or sequence numbers or something.
 
 If you get to the point of displaying the Markdown as HTML, you can
 hack the Markdown processor to specially handle link URIs of the form
-`quicket:IDNUMBER`.
+`quickette:IDNUMBER`.
 
 
 ## Statuses include:
