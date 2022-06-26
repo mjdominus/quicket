@@ -1,4 +1,4 @@
-Very simple ticketing system
+Quickette - Very simple ticketing system
 
 # Underlying principle
 
@@ -34,6 +34,12 @@ The file has a metainformation block at the top that includes
 
 Anything else?  Maybe not.
 Freeform stuff should be allowed probably
+
+## History
+
+Maybe a ticket can have a history section at the bottom and the tools
+(such as change-status) can update that automatically in some
+easy-to-parse format.
 
 ## IDs
 
@@ -93,3 +99,9 @@ utility that turns the metainformation into a SQLite file that you can
 query.  Look into
 [`sqlite-utils`](https://sqlite-utils.datasette.io/en/stable/).
 (Thanks, Julia!)
+
+# Note
+
+Original plan was to name it "quicket", but there's a bit venue-ticket
+processor named that.  "Quickette" is better anyway.
+
