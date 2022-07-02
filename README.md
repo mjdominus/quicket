@@ -70,7 +70,9 @@ are in the directory `file.sub`.  Simple.
 
 Write a new file template.  Includes allocating an ID.
 
-## `to-do`
+`new-ticket -S ID` creates a subticket of the ticket with the specified ID.
+
+## `todo`
 
 List tickets that are ready to start, are in progress, or are
 "waiting" with "wakeup date" in the past.
@@ -104,4 +106,3 @@ query.  Look into
 
 Original plan was to name it "quicket", but there's a bit venue-ticket
 processor named that.  "Quickette" is better anyway.
-
