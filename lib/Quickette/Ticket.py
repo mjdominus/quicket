@@ -1,5 +1,6 @@
 
 import sys
+from Quickette.TicketMeta import TicketMeta
 
 class Ticket():
     def __init__(self, header, body):
@@ -19,7 +20,7 @@ class Ticket():
     @classmethod
     def load_from_array(cls, lines):
         header_length = None
-        for i in len(lines):
+        for i in range(len(lines)):
             if lines[i].strip() == "":
                 header_length = i
                 break
