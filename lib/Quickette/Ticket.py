@@ -14,7 +14,9 @@ class Ticket():
 
     @classmethod
     def load_from_fh(cls, fh):
-        lines = fh.getlines()
+        lines = [ ln.rstrip() for ln in fh.readlines() ]
+        if lines[-1] == "":
+            lines = lines[:-1]
         return cls.load_from_array(lines)
 
     @classmethod
