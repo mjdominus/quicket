@@ -5,6 +5,8 @@ import re
 
 from Quickette.Error import MalformedHeaderLineException
 
+# For later: make the lookup case-insensitive
+
 class TicketMeta(dict):
     def __init__(self, lines):
         self.conversions = {"created": datetime.fromisoformat}
@@ -27,3 +29,24 @@ class TicketMeta(dict):
             return f, self.convert(f, v)
         else:
             raise MalformedHeaderLineException(line)
+
+    def field_line(self, field, newline=False):
+        s = f"{field}: {self[field]}"
+        if newline:
+            s += "\n"
+        return s
+
+    def lines(self):
+        lns = []
+        # These come first
+        top = [ "id", "title", "created" ]
+        for f in top:
+            lns.append(self.field_line(f))
+        for f in self.keys():
+            if f in top:
+                continue
+            lns.append(self.field_line(f))
+        return lns
+
+    def __str__(self):
+        return "\n".join(self.lines() + [""])
