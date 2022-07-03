@@ -1,7 +1,6 @@
 
 
-from Quickette.Ticket import Ticket
-from Quickette.TicketMeta import TicketMeta
+from quickette.ticket import Ticket, TicketMeta
 
 import pytest
 

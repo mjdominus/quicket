@@ -1,5 +1,5 @@
 
-from Quickette.Ticket import Ticket
+from quickette.ticket import Ticket
 from datetime import datetime
 import pytest
 import sys

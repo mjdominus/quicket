@@ -1,5 +1,5 @@
 
-from Quickette.TicketFile import TicketFile
+from quickette.ticket import TicketFile
 
 sample_ticket="""ID: 142857
 Title: sample ticket

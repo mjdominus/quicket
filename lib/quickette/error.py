@@ -2,10 +2,10 @@
 class TicketParsingException(Exception):
     pass
 
-class MalformedHeaderLineException(TicketParsingException):
+class MalformedHeaderLine(TicketParsingException):
     pass
 
-class UnknownStatusException(ValueError):
+class UnknownStatus(ValueError):
     pass
 
 class MissingRequiredField(ValueError):

@@ -6,7 +6,7 @@ import pwd
 import toml
 
 
-class Quickette():
+class App():
     def __init__(self, config_dir=None):
         if config_dir is None:
             config_dir = self.default_config_dir()

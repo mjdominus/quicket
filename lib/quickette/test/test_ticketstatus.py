@@ -1,15 +1,15 @@
 
 import pytest
 
-from Quickette.TicketStatus import TicketStatus
-from Quickette.Error import UnknownStatusException
+from quickette.ticket import TicketStatus
+from quickette.error import UnknownStatus
 
 def test_basic():
     assert TicketStatus("ready to start")
     assert TicketStatus("in progress")
     assert TicketStatus("done")
 
-    with pytest.raises(UnknownStatusException):
+    with pytest.raises(UnknownStatus):
         TicketStatus("poo")
 
     # __str__ and lowercasing
