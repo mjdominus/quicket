@@ -37,4 +37,11 @@ class Ticket():
             body = lines[header_length+1 : ]
 
         header = TicketMeta.from_lines(lines[: header_length])
+
+        # TODO TicketBody should be a class that supports methods like "append"
+        # and maybe markdown structure
+        # right now it's an array of lines
         return cls(header, body)
+
+    def __str__(self):
+        return str(self.header) + "\n" + "\n".join(self.body) + "\n"

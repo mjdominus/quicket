@@ -9,6 +9,8 @@ Title: sample ticket
 Favorite-Food: crab cakes
 Created: 2020-04-02 02:38:00
 Wakeup: 2020-04-02 02:38:00
+
+I am a ticket body
 """
 
 def test_parse():
@@ -26,3 +28,12 @@ def test_parse():
 
     with pytest.raises(KeyError):
         t.header["poo"]
+
+    assert t.body == [ "I am a ticket body" ]
+
+def test___str__():
+    # Also tests Ticket.load_from_string and round-tripping of dump-then-parse
+    t1 = Ticket.load_from_array(sample_ticket.splitlines())
+    t2 = Ticket.load_from_string(str(t1))
+
+    assert str(t2) == str(t1)
