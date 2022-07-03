@@ -4,3 +4,9 @@ class TicketParsingException(Exception):
 
 class MalformedHeaderLineException(TicketParsingException):
     pass
+
+class UnknownStatusException(ValueError):
+    pass
+
+class MissingRequiredField(ValueError):
+    pass

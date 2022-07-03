@@ -1,6 +1,7 @@
 
 from Quickette.Ticket import Ticket
 from datetime import datetime
+import pytest
 import sys
 
 sample_ticket="""ID: 142857
@@ -22,3 +23,6 @@ def test_parse():
 
     # Hyphens in the key, spaces in the value
     assert t.header["favorite-food"] == "crab cakes"
+
+    with pytest.raises(KeyError):
+        t.header["poo"]

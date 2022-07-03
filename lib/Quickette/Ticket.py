@@ -30,5 +30,5 @@ class Ticket():
         else:
             body = lines[header_length+1 : ]
 
-        header = TicketMeta(lines[: header_length])
+        header = TicketMeta.from_lines(lines[: header_length])
         return cls(header, body)
