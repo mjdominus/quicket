@@ -20,6 +20,10 @@ class Ticket():
         return cls.load_from_array(lines)
 
     @classmethod
+    def load_from_string(cls, s):
+        return cls.load_from_array(s.splitlines())
+
+    @classmethod
     def load_from_array(cls, lines):
         header_length = None
         for i in range(len(lines)):
