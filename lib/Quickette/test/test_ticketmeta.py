@@ -40,7 +40,6 @@ def test_defaults():
     assert str(t["status"]) == "ready to start"
     assert "created" in t
 
-
 # Make sure None fields are omitted from the output
 @pytest.mark.xfail
 def test__none__():
