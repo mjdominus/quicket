@@ -72,6 +72,8 @@ Write a new file template.  Includes allocating an ID.
 
 `new-ticket -S ID` creates a subticket of the ticket with the specified ID.
 
+This is unnecessary at first; you can just write the markdown file by hand.
+
 ## `todo`
 
 List tickets that are ready to start, are in progress, or are
