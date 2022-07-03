@@ -6,8 +6,8 @@ import sys
 sample_ticket="""ID: 142857
 Title: sample ticket
 Favorite-Food: crab cakes
-Created: 2020-04-02T02:38:00
-Wakeup: 2020-04-02T02:38:00
+Created: 2020-04-02 02:38:00
+Wakeup: 2020-04-02 02:38:00
 """
 
 def test_parse():
