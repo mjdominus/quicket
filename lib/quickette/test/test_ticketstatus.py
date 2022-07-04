@@ -5,7 +5,7 @@ from quickette.ticket import TicketStatus
 from quickette.error import UnknownStatus
 
 def test_basic():
-    assert TicketStatus("ready to start")
+    assert TicketStatus("ready")
     assert TicketStatus("in progress")
     assert TicketStatus("done")
 

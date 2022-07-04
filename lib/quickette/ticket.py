@@ -8,7 +8,7 @@ from quickette.error import MalformedHeaderLine, MissingRequiredField, UnknownSt
 
 allowed = [
     "waiting to start",
-    "ready to start",
+    "ready",
     "in progress",
     "waiting",
     "done",
@@ -17,7 +17,7 @@ allowed = [
 
 class TicketStatus(str):
 
-    default_status = "ready to start"
+    default_status = "ready"
 
     def __init__(self, s):
         global allowed

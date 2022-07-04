@@ -21,7 +21,7 @@ def test_lines():
     # order for these first three is always the same
     assert lns[0].startswith("id: ")
     assert lns[1].startswith("title: ")
-    assert lns[2] == "status: ready to start" # inserted automatically
+    assert lns[2] == "status: ready" # inserted automatically
     assert lns[3].startswith("created: ")
 
     for f in "favorite-food", "wakeup":
@@ -36,7 +36,7 @@ def test___str__():
 
 def test_defaults():
     t = TicketMeta(id="foo", title="dummy")
-    assert str(t["status"]) == "ready to start"
+    assert str(t["status"]) == "ready"
     assert "created" in t
 
 # Make sure kwargs are converted to lowercase

@@ -26,6 +26,9 @@ def test_parse():
     # Hyphens in the key, spaces in the value
     assert t.header["favorite-food"] == "crab cakes"
 
+    # Default status
+    assert t.header["status"] == "ready"
+
     with pytest.raises(KeyError):
         t.header["poo"]
 
