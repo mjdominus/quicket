@@ -1,5 +1,5 @@
 
-from quickette.ticket import Ticket
+from quickette.ticket import Ticket, TicketMeta
 from datetime import datetime
 import pytest
 import sys
@@ -37,3 +37,7 @@ def test___str__():
     t2 = Ticket.load_from_string(str(t1))
 
     assert str(t2) == str(t1)
+
+def test_no_body():
+    t1 = Ticket(TicketMeta(id=1, title="foo"))
+    assert t1.body == ""

@@ -32,7 +32,9 @@ class TicketStatus(str):
         return allowed
 
 class Ticket():
-    def __init__(self, header, body):
+    # TODO: Maybe __init__(self, body, **kwargs)
+    #       is a shortcut for __init__(self, TicketHeader(**kwargs), body)
+    def __init__(self, header, body=""):
         self.header = header
         self.body = body
 
@@ -65,7 +67,6 @@ class Ticket():
         else:
             body = lines[header_length+1 : ]
 
-        print("****", TicketMeta)
         header = TicketMeta.from_lines(lines[: header_length])
 
         # TODO TicketBody should be a class that supports methods like "append"
