@@ -7,6 +7,11 @@ ticket are `TicketFiles`, not `Tickets`.
 If this starts to bother you, you can have the aubdirectory behavior
 overridden or augmented by a header field.
 
+does a TicketFile contain a Ticket, as you have now?  Or is it the
+other way around?  I think the latter.  Then ticketfile.load() doesn't
+update the ticketfile object, it returns a ticket object that contains
+the original ticketfile object.
+
 --------
 
 Probably need a TicketRepository object
@@ -25,5 +30,3 @@ What's actually important to have in the CLI utilities?
    about.  A web interface could insert the title.
 
 * `show` - no
-
-
