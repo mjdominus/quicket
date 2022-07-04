@@ -106,5 +106,5 @@ query.  Look into
 
 # Note
 
-Original plan was to name it "quicket", but there's a bit venue-ticket
+Original plan was to name it "quicket", but there's a big venue-ticket
 processor named that.  "Quickette" is better anyway.
