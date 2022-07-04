@@ -39,6 +39,16 @@ def test_defaults():
     assert str(t["status"]) == "ready to start"
     assert "created" in t
 
+# Make sure kwargs are converted to lowercase
+# and underscores turn into hyphens
+def test_transform_attribute():
+    tm = TicketMeta(ID=1, Title="foo", Created="1234", favorite_food="crab cakes")
+    assert tm["id"] == 1
+    assert tm["title"] == "foo"
+    assert tm["created"] == "1234"
+    assert tm["favorite-food"] == "crab cakes"
+
+
 # Make sure None fields are omitted from the output
 @pytest.mark.xfail
 def test__none__():

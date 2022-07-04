@@ -89,10 +89,11 @@ class TicketMeta(dict):
     def __init__(self, **kwargs):
 
         for k, v in kwargs.items():
-            self[k] = v
-        if "id" not in kwargs:
+            field = k.lower().replace("_", "-")
+            self[field] = v
+        if "id" not in self:
             raise MissingRequiredField("id")
-        if "title" not in kwargs:
+        if "title" not in self:
             raise MissingRequiredField("title")
 
         self.set_defaults()
