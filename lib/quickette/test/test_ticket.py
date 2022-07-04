@@ -76,3 +76,16 @@ def test_subtickets():
     for t in t1, t2, t3, t4:
         assert t.root() == t1
         assert t.relatives() == set([t1, t2, t3, t4])
+
+def test_filename():
+    tests = [ ("sample ticket", "sample-ticket.md"),
+              ("Sample Ticket", "sample-ticket.md"),
+              ("ticket #2", "ticket-2.md"),
+              ("sample    ticket", "sample-ticket.md"),
+              ("fix broken `Penguin` class",
+               "fix-broken-penguin-class.md"),
+              ]
+
+    for title, x in tests:
+        a = Ticket.generate_filename(title)
+        assert a == x

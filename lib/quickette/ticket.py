@@ -76,6 +76,10 @@ class Ticket():
         # right now it's an array of lines
         return cls(header, body)
 
+    @property
+    def title(self):
+        return self.header.title
+
     def add_subticket(self, *subtickets):
         for st in subtickets:
             self.subtickets.add(st)
@@ -95,9 +99,24 @@ class Ticket():
     def relatives(self):
         return self.root().all_subtickets()
 
-    def save(self):
-        # returns a TicketFile
-        pass
+    def save(self, filename=None):
+        if self.filename is None:
+            if filename is None:
+                self.filename = self.generate_filename(self.title)
+            else:
+                self.filename = filename
+        pass # TODO
+
+    @classmethod
+    def generate_filename(cls, title):
+        # No filename was supplied for this ticket, so make one
+        # up based on the title
+        # XXX
+        basename = title.lower()  # Do I really want this?
+        basename = re.sub(r'\s+', "-", basename)
+        basename = re.sub(r'[^\w-]', "", basename)
+        basename += ".md"
+        return basename
 
     def __str__(self):
         return str(self.header) + "\n" + "\n".join(self.body) + "\n"
