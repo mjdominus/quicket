@@ -37,6 +37,8 @@ class Ticket():
     def __init__(self, header, body=""):
         self.header = header
         self.body = body
+        self.subtickets = set()
+        self.parent = None
 
     @classmethod
     def load_from_file(cls, file):
@@ -73,6 +75,29 @@ class Ticket():
         # and maybe markdown structure
         # right now it's an array of lines
         return cls(header, body)
+
+    def add_subticket(self, *subtickets):
+        for st in subtickets:
+            self.subtickets.add(st)
+            st.parent = self
+
+    def all_subtickets(self):
+        result = set([ self ])
+        for t in self.subtickets:
+            result |= t.all_subtickets()
+        return result
+
+    def root(self):
+        while self.parent is not None:
+            self = self.parent
+        return self
+
+    def relatives(self):
+        return self.root().all_subtickets()
+
+    def save(self):
+        # returns a TicketFile
+        pass
 
     def __str__(self):
         return str(self.header) + "\n" + "\n".join(self.body) + "\n"

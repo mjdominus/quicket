@@ -1,5 +1,6 @@
 
 from quickette.ticket import TicketFile
+import pytest
 
 sample_ticket="""ID: 142857
 Title: sample ticket
@@ -9,6 +10,10 @@ This is a ticket body.
 
 It has two sections.
 """
+
+@pytest.mark.skip("Haven't written subticket feature yet")
+def test_subtickets():
+    pass
 
 def test_basic(tmpdir):
     fn = tmpdir / "basic.md"
