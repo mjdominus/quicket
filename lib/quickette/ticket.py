@@ -131,7 +131,6 @@ _conversions = {"created": datetime.fromisoformat,
 class TicketMeta(dict):
 
     def __init__(self, **kwargs):
-
         for k, v in kwargs.items():
             field = k.lower().replace("_", "-")
             self[field] = v

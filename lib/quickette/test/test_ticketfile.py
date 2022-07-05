@@ -2,22 +2,13 @@
 from quickette.ticket import TicketFile
 import pytest
 
-sample_ticket="""ID: 142857
-Title: sample ticket
-Created: 2020-04-02 02:38:00
-
-This is a ticket body.
-
-It has two sections.
-"""
-
 @pytest.mark.skip("Haven't written subticket feature yet")
 def test_subtickets():
     pass
 
-def test_basic(tmpdir):
+def test_basic(tmpdir, sample_ticket_text):
     fn = tmpdir / "basic.md"
-    fn.write_text(sample_ticket, encoding="utf8")
+    fn.write_text(sample_ticket_text, encoding="utf8")
 
     tf = TicketFile(fn)
     assert tf.loaded
@@ -29,10 +20,10 @@ def test_basic(tmpdir):
     assert not tf0.loaded
     assert "ticket" not in tf0.__dict__ or tf0.__dict__["ticket"] is None
 
-def test_update(tmpdir):
+def test_update(tmpdir, sample_ticket_text):
     fn = tmpdir / "update.md"
 
-    fn.write_text(sample_ticket, encoding="utf8")
+    fn.write_text(sample_ticket_text, encoding="utf8")
     tf = TicketFile(fn)
     tf.ticket.body = tf.body + [ "", "No, I meant three sections" ]
     tf.header["favorite-food"] = "crab cakes"

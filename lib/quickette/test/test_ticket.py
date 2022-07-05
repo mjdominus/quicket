@@ -4,17 +4,8 @@ from datetime import datetime
 import pytest
 import sys
 
-sample_ticket="""ID: 142857
-Title: sample ticket
-Favorite-Food: crab cakes
-Created: 2020-04-02 02:38:00
-Wakeup: 2020-04-02 02:38:00
-
-I am a ticket body
-"""
-
-def test_parse():
-    t = Ticket.load_from_array(sample_ticket.splitlines())
+def test_parse(sample_ticket_text):
+    t = Ticket.load_from_array(sample_ticket_text.splitlines())
 
     # lowercasing of field names
     assert t.header["id"] == "142857"
@@ -32,11 +23,11 @@ def test_parse():
     with pytest.raises(KeyError):
         t.header["poo"]
 
-    assert t.body == [ "I am a ticket body" ]
+    assert t.body == [ "This is a ticket body.", "", "It has two sections." ]
 
-def test___str__():
+def test___str__(sample_ticket_text):
     # Also tests Ticket.load_from_string and round-tripping of dump-then-parse
-    t1 = Ticket.load_from_array(sample_ticket.splitlines())
+    t1 = Ticket.load_from_array(sample_ticket_text.splitlines())
     t2 = Ticket.load_from_string(str(t1))
 
     assert str(t2) == str(t1)
