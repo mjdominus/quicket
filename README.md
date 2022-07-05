@@ -63,7 +63,7 @@ hack the Markdown processor to specially handle link URIs of the form
 ## Hierarchy
 
 Tickets have subtickets. If a ticket is in `file.md`, its subtickets
-are in the directory `file.sub`.  Simple.
+are in the directory `file.d`.  Simple.
 
 # Utility programs
 

@@ -27,6 +27,21 @@ in the future, the SQLite database.
 
 Putting any of this stuff in a per-user configuration directory was a silly idea.
 
+## Repository layout
+
+Instead of putting a ticket in `<title>.md` and its subtickets in
+`<title>.d/<sub-title>.md`, maybe put the ticket in
+`<title>/ticket.md` and the subtickets in `<title>/<sub-title>`.  That
+is, a ticket is not a markdown file with an associated directory, but
+just a directory.
+
+The advantage of the earlier scheme is that it's trivial to make a new ticket: just create the file.
+
+Comporomise: Why not both?  `<title>.md` is a ticket, but if you want
+it to have subtickets you have to move it to
+`<title>/ticket.md`. Leave it the way it is for now, you can always
+change it later.
+
 # Actually important CLI utilities
 
 * `new-ticket1` - no
@@ -98,6 +113,8 @@ If it has any green subtickets, it must be blue or green.
     * Done
     * Will not do
 
-
-
+It there a blue "On hold" status which means that work is stopped but
+it's not waiting for anything in particular?  I think no, that's how
+you get forgotten tickets.  If you've stopped work on it but you're
+not waiting for _something_ to happen, that's "Won't do".
 
