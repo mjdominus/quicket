@@ -31,6 +31,7 @@ The file has a metainformation block at the top that includes
   * current status
   * wakeup time
   * tags
+  * prerequisite tickets
 
 Anything else?  Maybe not.
 Freeform stuff should be allowed probably
@@ -53,7 +54,7 @@ hack the Markdown processor to specially handle link URIs of the form
 ## Statuses include:
 
   * Waiting to start
-  * Ready to start
+  * Ready for work
   * In progress
   * Waiting
   * Done
@@ -78,6 +79,10 @@ This is unnecessary at first; you can just write the markdown file by hand.
 
 List tickets that are ready to start, are in progress, or are
 "waiting" with "wakeup date" in the past.
+
+Maybe this updates the statuses of the latter tickets to "ready for work".
+If so, if there is a ticket with an unfinished prerequisite, its status
+should update to "waiting".  See [`NOTES`](NOTES.md).
 
 ## `update-last-modifed`
 
