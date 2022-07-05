@@ -183,7 +183,7 @@ class TicketMeta(dict):
             f = f.lower()
             return f, cls.convert(f, v)
         else:
-            raise MalformedHeaderLineException(line)
+            raise MalformedHeaderLine(line)
 
     def field_line(self, field, newline=False):
         s = f"{field}: {self[field]}"

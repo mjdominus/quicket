@@ -1,6 +1,7 @@
 
 
 from quickette.ticket import Ticket, TicketMeta
+from quickette.error import MalformedHeaderLine
 
 import pytest
 
@@ -48,6 +49,13 @@ def test_transform_attribute():
     assert tm["created"] == "1234"
     assert tm["favorite-food"] == "crab cakes"
 
+
+def test_malformed_header():
+    for malformed in ("no field name", "-must-begin-with-alpha: foo",
+                      ": missing field name",  "field:no space after colon",
+                      "   title: leading spaces"):
+        with pytest.raises(MalformedHeaderLine):
+            TicketMeta.parse_header_line(malformed)
 
 # Make sure None fields are omitted from the output
 @pytest.mark.xfail
