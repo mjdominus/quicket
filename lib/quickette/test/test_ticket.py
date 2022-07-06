@@ -25,6 +25,8 @@ def test_parse(sample_ticket_text):
 
     assert t.body == [ "This is a ticket body.", "", "It has two sections." ]
 
+    assert t.file is None
+
 def test___str__(sample_ticket_text):
     # Also tests Ticket.load_from_string and round-tripping of dump-then-parse
     t1 = Ticket.load_from_array(sample_ticket_text.splitlines())

@@ -1,19 +1,4 @@
 
-# relationship of `Ticket` and `TicketFile`
-
-Because of the way you've separated `Ticket` from `TicketFile`, the
-subticket relationships are all known to `TicketFile`.  Maybe that
-won't turn out to be a problem.  But note that the subtickets of a
-ticket are `TicketFiles`, not `Tickets`.
-
-If this starts to bother you, you can have the aubdirectory behavior
-overridden or augmented by a header field.
-
-does a TicketFile contain a Ticket, as you have now?  Or is it the
-other way around?  I think the latter.  Then ticketfile.load() doesn't
-update the ticketfile object, it returns a ticket object that contains
-the original ticketfile object.
-
 # `TicketRepository`
 
 Probably need a `TicketRepository` object
@@ -109,7 +94,7 @@ If it has any green subtickets, it must be blue or green.
   * Blue
     * In progress
     * Waiting
-  * Green 
+  * Green
     * Done
     * Will not do
 
@@ -117,4 +102,3 @@ It there a blue "On hold" status which means that work is stopped but
 it's not waiting for anything in particular?  I think no, that's how
 you get forgotten tickets.  If you've stopped work on it but you're
 not waiting for _something_ to happen, that's "Won't do".
-

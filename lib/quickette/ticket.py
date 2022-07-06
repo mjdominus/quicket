@@ -1,6 +1,7 @@
 
 from datetime import datetime
 import os
+from pathlib import Path
 import sys
 import re
 
@@ -39,11 +40,12 @@ class Ticket():
         self.body = body
         self.subtickets = set()
         self.parent = None
+        self.file = None
 
     @classmethod
     def load_from_file(cls, file):
-        with open(file) as fh:
-            return cls.load_from_fh(fh)
+        tf = TicketFile(file, load=True)
+        return tf.ticket
 
     @classmethod
     def load_from_fh(cls, fh):
@@ -210,8 +212,9 @@ class TicketMeta(dict):
 # Read-only for now; later add file locking
 class TicketFile():
     def __init__(self, filename, load=True):
+        filename = Path(filename)
         self.filename = filename
-        self.tmp = filename + ".tmp"
+        self.tmp = filename.with_name(filename.name + ".tmp")
         self.loaded = False
         if load:
             self.load()
@@ -219,9 +222,30 @@ class TicketFile():
     def load(self):
         if self.loaded:
             return
-        with open(self.filename) as fh:
+        with self.filename.open() as fh:
             self.ticket = Ticket.load_from_fh(fh)
+            self.ticket.file = self
+
+        for subticket in self.ingest_subtickets():
+            self.ticket.add_subticket(subticket)
+
         self.loaded = True
+
+    def ingest_subtickets(self):
+        subtickets = []
+
+        d = self.subticket_dir_name()
+        if not d.exists():
+            print("**", d, "does not exist", file=sys.stderr)
+            return []
+
+        for entry in d.iterdir():
+            if entry.is_file:
+                subtickets.append(Ticket.load_from_file(entry))
+        return subtickets
+
+    def subticket_dir_name(self):
+        return self.filename.with_suffix(".d")
 
     def update(self):
         if not self.loaded:
