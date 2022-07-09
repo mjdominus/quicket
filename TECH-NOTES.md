@@ -57,9 +57,9 @@ rule is:
 * If the ticket has prerequisites or a wakeup time, then update its
   status as follows:
 
-  > if all its prerequisites are finished, and  
-  >    its waiting time, if it has one, is in the past, then  
-  >        update its status to "ready for work"  
+  > if all its prerequisites are finished, and
+  >    its waiting time, if it has one, is in the past, then
+  >        update its status to "ready for work"
   > else,
   >        update its status to "waiting"
 
@@ -102,3 +102,37 @@ It there a blue "On hold" status which means that work is stopped but
 it's not waiting for anything in particular?  I think no, that's how
 you get forgotten tickets.  If you've stopped work on it but you're
 not waiting for _something_ to happen, that's "Won't do".
+
+# Metainformation format
+
+Your current design says that a ticket file has an email-like header,
+followed by a Markdown body.  This is a clumsy design because it requires the user to understand two different kinds of syntax, and it requires three separate parsers: One for markdown, one for headers, and one to combine them.
+
+Instead, the whole thing should be Markdown.  Instead of
+
+        ID: 142857
+        Title: sample ticket
+        Status: In progress
+        Favorite-Food: crab cakes
+        Created: 2020-04-02 02:38:00
+
+        # Markdown section begins
+
+        Blah blah blah
+
+it should look like this:
+
+        # sample ticket
+
+        * ID: 142857
+        * Status: In progress
+        * Favorite-Food: crab cakes
+        * Created: 2020-04-02 02:38:00
+
+        # More Markdown follows
+
+        Blah blah blah
+
+The file must begin with a `#` line and then a bulleted list.  The
+initial header line is the ticket title.  The metainformation is in
+the bulleted list.
