@@ -1,3 +1,6 @@
+
+
+
 # This is a header 1
 
 * Bullet item 1
@@ -10,6 +13,8 @@ And some raw text
 
 1. Numbered list
 2. Numbered list
+
+!! special-type header
 
 --------
 

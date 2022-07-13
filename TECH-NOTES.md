@@ -143,3 +143,23 @@ the bulleted list.
 empty-subclass test.
 
 Check out `mistletoe` next.
+
+`mistletoe` is also awful. For some reason this works:
+
+            with MJDRenderer() as r:
+                doc = mistletoe.Document(md)
+                rend = r.render(doc)
+
+but this doesn't:
+
+            doc = mistletoe.Document(md)
+            with MJDRenderer() as r:
+                rend = r.render(doc)
+
+so the behavior of the `Document` constructor (which takes a markdown
+text input) depends on some magical notion of what the current
+_renderer_ is, and custom parser plugins are configured in the
+_renderer_, why??¿?
+
+It's because the renderer `__init__` function dynamically modifies the
+block_token and span_token classes.
