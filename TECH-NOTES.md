@@ -136,3 +136,10 @@ it should look like this:
 The file must begin with a `#` line and then a bulleted list.  The
 initial header line is the ticket title.  The metainformation is in
 the bulleted list.
+
+# On choice of Markdown engine
+
+`marko` is a loser.  Confusing and inconsistent OO architecture, fails
+empty-subclass test.
+
+Check out `mistletoe` next.
