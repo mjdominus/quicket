@@ -1,7 +1,7 @@
 
 import pytest
 
-from quickette.ticket import TicketStatus
+from quickette.ticket_status import TicketStatus
 from quickette.error import UnknownStatus
 
 def test_basic():

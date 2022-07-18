@@ -1,20 +1,24 @@
 
 
-from quickette.ticket import Ticket, TicketMeta
+from quickette.ticket import Ticket
+from quickette.ticket_meta import TicketMeta
 from quickette.error import MalformedHeaderLine
 
 import pytest
 
-sample_ticket="""ID: 142857
-Title: sample ticket
-Favorite-Food: crab cakes
-Created: 2020-04-02 02:38:00
-Wakeup: 2020-04-02 02:38:00
+sample_ticket="""
+
+# sample ticket
+
+* ID: 142857
+* Favorite-Food: crab cakes
+* Created: 2020-04-02 02:38:00
+* Wakeup: 2020-04-02 02:38:00
 """
 
 
 def test_lines():
-    t = Ticket.load_from_array(sample_ticket.splitlines())
+    t = Ticket.load_from_string(sample_ticket)
     lns = t.header.lines()
 
     assert len(lns) == 6 # status was inserted automatically
@@ -29,10 +33,11 @@ def test_lines():
         assert lns[4].startswith(f"{f}: ") or lns[5].startswith(f"{f}: ")
 
 def test___str__():
-    t = Ticket.load_from_array(sample_ticket.splitlines())
+    t = Ticket.load_from_string(sample_ticket)
     s = str(t.header)
+    assert t.title == "sample ticket"
     assert s.startswith("id: ")
-    for f in "title", "favorite-food", "created", "wakeup", "status":
+    for f in "favorite-food", "created", "wakeup", "status":
         assert "\n" + f + ": " in s
 
 def test_defaults():

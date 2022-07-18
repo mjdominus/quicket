@@ -5,6 +5,12 @@ class TicketParsingException(Exception):
 class MalformedHeaderLine(TicketParsingException):
     pass
 
+class MissingTitle(TicketParsingException):
+    pass
+
+class MissingHeader(TicketParsingException):
+    pass
+
 class UnknownStatus(ValueError):
     pass
 
