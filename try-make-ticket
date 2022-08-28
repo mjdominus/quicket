@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+import sys
+sys.path.insert(0, "lib")
+from pprint import pprint
+from quickette.ticket import Ticket
+
+if (len(sys.argv) > 1):
+  file = sys.argv[1]
+else:
+  file = "sample-md.md"
+
+t = Ticket.load_from_file(file)
+
+import pdb
+pdb.set_trace()
