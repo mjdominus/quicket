@@ -139,10 +139,12 @@ the bulleted list.
 
 # On choice of Markdown engine
 
+## `marko`
+
 `marko` is a loser.  Confusing and inconsistent OO architecture, fails
 empty-subclass test.
 
-Check out `mistletoe` next.
+## `mistletoe`
 
 `mistletoe` is also awful. For some reason this works:
 
@@ -164,4 +166,14 @@ _renderer_, why??¿?
 It's because the renderer `__init__` function dynamically modifies the
 block_token and span_token classes.
 
-Next, maybe `markdown_it_py` or `misaka`.
+## `markdown-it-py`
+
+This is the winner.  Rich API, choice of token-stream or tree
+representation, intelligent representation of objects, separate parser
+and renderer, plugin architecture that I think is likely to make
+sense.
+
+API docs:
+
+https://markdown-it-py.readthedocs.io/en/latest/api/markdown_it.html
+

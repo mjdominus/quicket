@@ -22,14 +22,14 @@ class Ticket():
 
     @classmethod
     def load_from_file(cls, file, parser=None):
-        tf = TicketFile(file, load=True, parser=parser)
+        tf = TicketFile(file, load=True)
         return tf.ticket
 
     @classmethod
     def load_from_fh(cls, fh, parser=None):
-        if parser is None:
-            parser = cls.default_parser()
-        return cls.load_from_markdown(parser.parse(fh))
+        # markdown-it doesn't have a parse-from-fh option so
+        # we will read it into a string
+        return cls.load_from_string(fh.read(), parser=parser)
 
     @classmethod
     def load_from_string(cls, s, parser=None):

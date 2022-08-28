@@ -9,8 +9,8 @@ class Parser():
         self.markdown_it = MarkdownIt()
 
     def parse(self, target):
-        md = self.markdown_it.parse(target)
-        return list(md)
+        tokens = self.markdown_it.parse(target)
+        return SyntaxTreeNode(tokens)
 
 class Markdown():
     """
@@ -22,9 +22,11 @@ class Markdown():
         """
         `md` here is intended to be a representation of the markdown that is
         selected for ease of manipulation.  In the original implementation
-        it will be a list of `markdown_it.token` objects
+        it will be the tree structure returned by markdown_it.tree.SyntaxTreeNode
         """
 
+        assert type(md) == SyntaxTreeNode
+        assert md.is_root
         self.md = md
 
     @classmethod
@@ -41,29 +43,17 @@ class Markdown():
             node = self.md
         return [ n.content for n in node.walk() if n.type == "text" ]
 
-    def split_tokens(self):
+    def split_markdown(self):
         """
-        Given the token stream for the entire document, break it into two parts:
-        tokens in the header, and tokens in the body.
+        Given the markdown representation of the entire document, break it into parts:
 
-        The head tokens plus the body tokens must equal the original token list.
+        TODO ??? XXX
         """
-        n_tokens = len(self.md)
 
-        head_tokens = []
-        body_tokens = []
+        result = {}
+        children = self.md.children
+        assert
 
-        state = "start"
-        i = 0
-        while i < range(n_tokens):
-            t = self.md[i]
-
-            if state == "start": # looking for the title
-                assert t.type == "heading_open" # and it's an h1 and so on
-                assert self.md[i+1].type == "inline"
-
-            elif state == "found_title": #
-                pass
 
     def header(self):
         """
@@ -71,6 +61,8 @@ class Markdown():
         and metadata
         """
         md = self.md
+        import pdb
+        pdb.set_trace()
 
         title = md.children[0]
         assert title.type == "heading"
